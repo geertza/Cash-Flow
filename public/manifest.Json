@@ -1,0 +1,28 @@
+{
+    "name":"Cash Flow",
+    "short_name":"$FLOW",
+    "start_url":"/budget",
+    "display":"minimal-ui",
+    "orientation":"portrait-primary",
+    "icons":[
+        {
+            "src":"/icons/icon-192x192.png",
+            "type":"image/png",
+            "sizes":"192x192",
+            "purpose":"any"
+        },
+        {
+            "src":"/icons/icon-512x512.png",
+            "type":"image/png",
+            "sizes":"512x512",
+            "purpose":"any"
+        },
+        {
+            "src":"/icons/icon-144x144.png",
+            "type":"image/png",
+            "sizes":"144x144",
+            "purpose":"any"
+        }
+    ]
+
+}
