@@ -15,7 +15,6 @@ self.addEventListener("install", (evt)=> {
   console.log('install');
   evt.waitUntil(
     caches.open(cacheName).then((cache) => {
-      console.log('[ServiceWorker] Pre-caching offline page');
       return cache.addAll(FILES_TO_CACHE);
     })
 );})
@@ -25,7 +24,6 @@ self.addEventListener("install", (evt)=> {
 
   // Call Activate Event
 self.addEventListener('activate', e => {
-  console.log('Service Worker: Activated');
   // Remove unwanted caches
   e.waitUntil(
     caches.keys().then(cacheNames => {
@@ -43,7 +41,7 @@ self.addEventListener('activate', e => {
 
 // Call Fetch Event
 self.addEventListener('fetch', e => {
-  console.log('Service Worker: Fetching');
+
   e.respondWith(
     fetch(e.request)
       .then(res => {
@@ -61,6 +59,6 @@ self.addEventListener('fetch', e => {
 });
 // Call Fetch Event
 self.addEventListener('fetch', e => {
-  console.log('Service Worker: Fetching');
+  
   e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
 });
