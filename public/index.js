@@ -1,3 +1,12 @@
+// CODELAB: Register service worker.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+        .then((reg) => {
+          console.log('Service worker registered.', reg);
+        });
+  });
+}
 let transactions = [];
 let myChart;
 
@@ -151,12 +160,4 @@ document.querySelector("#add-btn").onclick = function() {
 document.querySelector("#sub-btn").onclick = function() {
   sendTransaction(false);
 };
-// CODELAB: Register service worker.
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-        .then((reg) => {
-          console.log('Service worker registered.', reg);
-        });
-  });
-}
+
