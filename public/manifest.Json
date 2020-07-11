@@ -1,9 +1,12 @@
 {
-    "name":"Cash Flow",
-    "short_name":"$FLOW",
-    "start_url":"/budget",
-    "display":"minimal-ui",
-    "orientation":"portrait-primary",
+    "name": "Cash Flow",
+  "short_name": "$FLOW",
+  "theme_color": "#2196f3",
+  "background_color": "#2196f3",
+  "display": "standalone",
+  "orientation": "landscape",
+  "scope": "/",
+  "start_url": "/index",
     "icons":[
         {
             "src":"/icons/icon-192x192.png",
