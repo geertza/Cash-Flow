@@ -3,12 +3,12 @@ const FILES_TO_CACHE = [
   '/index.js',
   '/index.html',
   '/styles.css',
-  '/manifest.json'
-  // "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
-  // "https://cdn.jsdelivr.net/npm/chart.js@2.8.0"
-];
+  '/manifest.json',
+  '/icons/icon-192x192.png',
+  '/icons/icon-512x512.png'
+ ];
 
-const cacheName = "budget-v2";
+const cacheName = "budget";
 const Data = "budget_data";
 
 self.addEventListener("install", (evt)=> {
@@ -39,26 +39,36 @@ self.addEventListener('activate', e => {
   );
 });
 
-// Call Fetch Event
-self.addEventListener('fetch', e => {
-
-  e.respondWith(
-    fetch(e.request)
-      .then(res => {
-        // Make copy/clone of response
-        const resClone = res.clone();
-        // Open cahce
-        caches.open(cacheName).then(cache => {
-          // Add response to cache
-          cache.put(e.request, resClone);
-        });
-        return res;
-      })
-      .catch(err => caches.match(e.request).then(res => res))
-  );
-});
-// Call Fetch Event
-self.addEventListener('fetch', e => {
+self.addEventListener("fetch", e => {
+  if(e.request.url.includes('/api/')) {
+      console.log('[Service Worker] Fetch(data)', e.request.url);
   
-  e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
-});
+e.respondWith(
+              caches.open(cacheName).then(cache => {
+              return fetch(e.request)
+              .then(response => {
+                  if (response.status === 200){
+                      cache.put(e.request.url, response.clone());
+                  }
+                  return response;
+              })
+              .catch(err => {
+                  return cache.match(e.request);
+              });
+          })
+          );
+          return;
+      }
+      e.respondWith(
+        caches.open(cacheName).then( cache => {
+          return cache.match(e.request).then(response => {
+            return response || fetch(e.request);
+          });
+        })
+      );
+    });
+// // Call Fetch Event
+// self.addEventListener('fetch', e => {
+  
+//   e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+// });
