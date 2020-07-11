@@ -1,0 +1,31 @@
+{
+    "name": "Cash Flow",
+  "short_name": "$FLOW",
+  "theme_color": "#2196f3",
+  "background_color": "#2196f3",
+  "display": "standalone",
+  "orientation": "landscape",
+  "scope": "/",
+  "start_url": "/index",
+    "icons":[
+        {
+            "src":"/icons/icon-192x192.png",
+            "type":"image/png",
+            "sizes":"192x192",
+            "purpose":"any"
+        },
+        {
+            "src":"/icons/icon-512x512.png",
+            "type":"image/png",
+            "sizes":"512x512",
+            "purpose":"any"
+        },
+        {
+            "src":"/icons/icon-144x144.png",
+            "type":"image/png",
+            "sizes":"144x144",
+            "purpose":"any"
+        }
+    ]
+
+}
